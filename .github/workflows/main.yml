@@ -54,12 +54,12 @@ jobs:
       pages: write        
       id-token: write     
     environment:
-      name: production
+      name: production  
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - name: Checkout Repository  
+        uses: actions/checkout@v4 
         with:
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.TOKEN }}     
       
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
