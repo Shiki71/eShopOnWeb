@@ -60,6 +60,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.TOKEN }}
+      
+      - name: Upload artifact for deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: src/Web/wwwroot  # or wherever your static files are
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
+    
+    
