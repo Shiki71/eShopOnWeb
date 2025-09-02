@@ -69,5 +69,31 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4 
+
+      # Notification on failure via email
+      - name: Notify on Test Failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          # Sender email address (must match SMTP account)
+          from: 'github-actions@example.com'
+          # Recipient email address
+          to: 'your-email@example.com'
+          # Email subject
+          subject: '🚨 CI/CD Pipeline Test Failed'
+          # Email body
+          body: |
+            The tests for the CI/CD Pipeline have failed.
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref }}
+            Workflow: ${{ github.workflow }}
+            Run Number: ${{ github.run_number }}
+            URL: ${{ github.run_url }}
+          # SMTP server configuration
+          server_address: smtp.example.com
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          secure: true
     
     
