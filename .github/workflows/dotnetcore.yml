@@ -1,23 +1,26 @@
 name: eShopOnWeb Build and Test
 
-#Triggers (uncomment line below to use it)
-#on: [push, pull_request, workflow_dispatch]
+# Triggers
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:   # allows manual triggering from GitHub UI
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.0.x'
-        dotnet-quality: 'preview'
-
-    - name: Build with dotnet
-      run: dotnet build ./eShopOnWeb.sln --configuration Release
-    
-    - name: Test with dotnet
-      run: dotnet test ./eShopOnWeb.sln --configuration Release
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+          dotnet-quality: 'preview'
+      - name: Build with dotnet
+        run: dotnet build ./eShopOnWeb.sln --configuration Release
+      - name: Test with dotnet
+        run: dotnet test ./eShopOnWeb.sln --configuration Release
