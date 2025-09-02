@@ -21,10 +21,10 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore eShopOnWeb.sln   # 👈 specify solution
 
       - name: Build
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build eShopOnWeb.sln --no-restore --configuration Release
 
   # ---------------------------
   # 2. Test Stage
@@ -42,7 +42,7 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Run Tests
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test eShopOnWeb.sln --no-build --verbosity normal
 
   # ---------------------------
   # 3. Deploy Stage
